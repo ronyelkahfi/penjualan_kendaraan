@@ -13,9 +13,27 @@ class KendaraanController extends Controller
     function create(Request $req){
         $data = json_decode($req->getContent());
         // var_dump($data);
-        return $this->kendaraanService->create($data);
+        $result = $this->kendaraanService->create($data);
+        return $this->response(201,"Created",$result);
     }
     function get(){
-        return $this->kendaraanService->getStok();
+        $result = $this->kendaraanService->getStok();
+        return $this->response(200, "Success", $result);
+    }
+    function response(int $code, string $message, $data){
+        return response(json_encode([
+            "status" => $code,
+            "message" => $message,
+            "data" => $data
+        ]), $code)
+        ->header('Content-Type', 'text/json');
+        return $this->response(201,"Created",$result);
+    }
+    function responseError(int $code){
+        return response(json_encode([
+            "status" => $code,
+            "message" => $message
+        ]), $code)
+        ->header('Content-Type', 'text/json');
     }
 }
