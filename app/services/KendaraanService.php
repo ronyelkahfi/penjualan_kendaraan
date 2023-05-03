@@ -34,26 +34,19 @@ class KendaraanService {
         $inputData = (array) $input;
         $inputData["stok"] = $data->stok;
         // // var_dump($inputData);
-        $result = $this->kendaraanRepo->create($inputData);
-        return $this->response(201,"Created",$result);
+        return $this->kendaraanRepo->create($inputData);
+        
     }
     function getStok(){
-        $result = $this->kendaraanRepo->get();
-        return $this->response(200, "Success", $result);
+        return $this->kendaraanRepo->get();
     }
-    function response(int $code, string $message, $data){
-        return response(json_encode([
-            "status" => $code,
-            "message" => $message,
-            "data" => $data
-        ]), $code)
-        ->header('Content-Type', 'text/json');
+    
+    function reduceStok(string $kendaraanId,int $reducevalue){
+        return $this->kendaraanRepo->reduceStok($kendaraanId,$reducevalue);
     }
-    function responseError(int $code){
-        return response(json_encode([
-            "status" => $code,
-            "message" => $message
-        ]), $code)
-        ->header('Content-Type', 'text/json');
+
+    function getDetail(string $id){
+        return $this->kendaraanRepo->getById($id);
     }
+    
 }
