@@ -15,4 +15,7 @@ class KendaraanController extends Controller
         // var_dump($data);
         return $this->kendaraanService->create($data);
     }
+    function get(){
+        return $this->kendaraanService->getStok();
+    }
 }

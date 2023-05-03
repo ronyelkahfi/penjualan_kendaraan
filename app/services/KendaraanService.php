@@ -37,7 +37,10 @@ class KendaraanService {
         $result = $this->kendaraanRepo->create($inputData);
         return $this->response(201,"Created",$result);
     }
-
+    function getStok(){
+        $result = $this->kendaraanRepo->get();
+        return $this->response(200, "Success", $result);
+    }
     function response(int $code, string $message, $data){
         return response(json_encode([
             "status" => $code,
