@@ -25,5 +25,10 @@ class KendaraanRepository{
     function delete(string $id){
         $kendaraan = $this->kendaraan->find($id);
         return $kendaraan->delete();
-    }   
+    }
+    function reduceStok(string $id, int $reduceValue){
+        $kendaraan = $this->kendaraan->find($id);
+        $kendaraan->stok -= $reduceValue;
+        return $kendaraan->save();
+    }
 }
