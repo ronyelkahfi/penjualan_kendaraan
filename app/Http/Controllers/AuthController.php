@@ -4,17 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
-
+use App\Utils\ResponseUtil;
 class AuthController extends Controller
 {
+    protected $responseUtil;
     /**
      * Create a new AuthController instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(ResponseUtil $response)
     {
-        // $this->middleware('auth:api', ['except' => ['login']]);
+        $this->responseUtil = $response;
     }
 
     /**
@@ -27,7 +28,7 @@ class AuthController extends Controller
         $credentials = request(['email', 'password']);
         
         if (! $token = auth()->attempt($credentials)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            return $this->responseUtil->responseError(401,"Unauthorized", []);
         }
 
         return $this->respondWithToken($token);
