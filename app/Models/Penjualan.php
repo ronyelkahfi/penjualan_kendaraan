@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Jenssegers\Mongodb\Eloquent\Model;
-
+use App\Models\Kendaraan;
 class Penjualan extends Model
 {
     use HasFactory;
@@ -14,4 +14,8 @@ class Penjualan extends Model
         "customer",
         "items"
     ];
+    public function kendaraan()
+    {
+        return $this->belongsTo(Kendaraan::class, '_id');
+    }
 }

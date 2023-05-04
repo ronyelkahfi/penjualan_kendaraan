@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Jenssegers\Mongodb\Eloquent\Model;
-
+use App\Models\Penjualan;
 class Kendaraan extends Model
 {
     use HasFactory;
@@ -20,4 +20,9 @@ class Kendaraan extends Model
         "tipe",
         "stok"
     ];
+
+    // function sales(){
+    //     return $this->hasMany(Penjualan::class, items);
+    // }
+
 }

@@ -48,5 +48,7 @@ class KendaraanService {
     function getDetail(string $id){
         return $this->kendaraanRepo->getById($id);
     }
-    
+    function getDetailByIds(Array $ids){
+        return $this->kendaraanRepo->getByIds($ids);
+    }
 }

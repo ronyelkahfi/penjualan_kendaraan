@@ -20,3 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/kendaraan',[KendaraanController::class,'create']);
 Route::get('/kendaraan',[KendaraanController::class,'get']);
 Route::post('/penjualan', [PenjualanController::class, 'create']);
+Route::get('penjualan/by-produk',[PenjualanController::class, 'getSalesByProduct']);

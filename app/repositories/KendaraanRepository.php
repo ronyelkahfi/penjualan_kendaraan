@@ -31,4 +31,8 @@ class KendaraanRepository{
         $kendaraan->stok -= $reduceValue;
         return $kendaraan->save();
     }
+    function getByIds(Array $ids){
+        $result = $this->kendaraan->whereIn('_id', $ids)->get();
+        var_dump($result[0]);
+    }
 }
