@@ -11,8 +11,13 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\Validator;
+use App\Utils\ResponseUtil;
 class RegisteredUserController extends Controller
 {
+    protected $responseUtil;
+    function __construct(ResponseUtil $response){
+        $this->responseUtil = $response;
+    }
     /**
      * Display the registration view.
      *
@@ -46,9 +51,9 @@ class RegisteredUserController extends Controller
         if($validator->fails()){
             $messages = $validator->errors();
             
-            return $this->responseError(400,"Bad Request", $messages);
+            return $this->responseUtil->responseError(400,"Bad Request", $messages);
         }
-        
+
         $foundEmail = User::where('email',$request->email)->get();
         
         $user = User::create([
@@ -58,25 +63,8 @@ class RegisteredUserController extends Controller
         ]);
 
         if($user){
-            return $this->response(201, "Created", $user);
+            return $this->responseUtil->response(201, "Created", $user);
         }
     }
-    function response(int $code, string $message, $data){
-        return response(json_encode([
-            "status" => $code,
-            "message" => $message,
-            "data" => $data
-        ]), $code)
-        ->header('Content-Type', 'text/json');
-        return $this->response(201,"Created",$result);
-    }
-
-    function responseError(int $code, string $message, $constraint){
-        return response(json_encode([
-            "status" => $code,
-            "message" => $message,
-            "constraint" => $constraint
-        ]), $code)
-        ->header('Content-Type', 'text/json');
-    }
+    
 }
