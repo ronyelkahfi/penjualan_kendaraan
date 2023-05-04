@@ -11,7 +11,7 @@ class ResponseUtil {
         return $this->response(201,"Created",$result);
     }
 
-    function responseError(int $code, string $message, $constraint){
+    function responseError(int $code, string $message, $constraint=[]){
         return response(json_encode([
             "status" => $code,
             "message" => $message,
