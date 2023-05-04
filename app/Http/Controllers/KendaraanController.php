@@ -29,11 +29,5 @@ class KendaraanController extends Controller
         ->header('Content-Type', 'text/json');
         return $this->response(201,"Created",$result);
     }
-    function responseError(int $code){
-        return response(json_encode([
-            "status" => $code,
-            "message" => $message
-        ]), $code)
-        ->header('Content-Type', 'text/json');
-    }
+    
 }
