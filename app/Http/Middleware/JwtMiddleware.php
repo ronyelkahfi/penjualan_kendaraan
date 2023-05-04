@@ -6,9 +6,13 @@ use JWTAuth;
 use Exception;
 use Tymon\JWTAuth\Http\Middleware\BaseMiddleware;
 use Illuminate\Http\Request;
-
+use App\Utils\ResponseUtil;
 class JwtMiddleware
 {
+    protected $responseUtil;
+    function __construct(ResponseUtil $response){
+        $this->responseUtil = $response;
+    }
     /**
      * Handle an incoming request.
      *
@@ -22,20 +26,13 @@ class JwtMiddleware
             $user = JWTAuth::parseToken()->authenticate();
         } catch (Exception $e) {
             if ($e instanceof \Tymon\JWTAuth\Exceptions\TokenInvalidException) {
-                return $this->responseError(401,'Token is Invalid');
+                return $this->responseUtil->responseError(401,'Token is Invalid');
             } else if ($e instanceof \Tymon\JWTAuth\Exceptions\TokenExpiredException) {
-                return $this->responseError(401,'Token is Expired');
+                return $this->responseUtil->responseError(401,'Token is Expired');
             } else {
-                return $this->responseError(401,'Authorization Token not found');
+                return $this->responseUtil->responseError(401,'Authorization Token not found');
             }
         }
         return $next($request);
-    }
-    function responseError(int $code, string $message){
-        return response(json_encode([
-            "status" => $code,
-            "message" => $message
-        ]), $code)
-        ->header('Content-Type', 'text/json');
     }
 }
