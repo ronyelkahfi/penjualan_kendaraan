@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
-
+use Illuminate\Support\Facades\Validator;
 class RegisteredUserController extends Controller
 {
     /**
@@ -33,22 +33,50 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $contentBody = $request->getContent();
+        $decodedContent = json_decode($contentBody);
+        
+        $rules = [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
+            'password' => ['required'],
+        ];
 
+        $validator = Validator::make((array) $decodedContent, $rules);
+        if($validator->fails()){
+            $messages = $validator->errors();
+            
+            return $this->responseError(400,"Bad Request", $messages);
+        }
+        
+        $foundEmail = User::where('email',$request->email)->get();
+        
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
 
-        event(new Registered($user));
+        if($user){
+            return $this->response(201, "Created", $user);
+        }
+    }
+    function response(int $code, string $message, $data){
+        return response(json_encode([
+            "status" => $code,
+            "message" => $message,
+            "data" => $data
+        ]), $code)
+        ->header('Content-Type', 'text/json');
+        return $this->response(201,"Created",$result);
+    }
 
-        Auth::login($user);
-
-        return redirect(RouteServiceProvider::HOME);
+    function responseError(int $code, string $message, $constraint){
+        return response(json_encode([
+            "status" => $code,
+            "message" => $message,
+            "constraint" => $constraint
+        ]), $code)
+        ->header('Content-Type', 'text/json');
     }
 }

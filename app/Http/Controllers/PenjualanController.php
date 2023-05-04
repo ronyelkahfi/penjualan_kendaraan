@@ -35,7 +35,7 @@ class PenjualanController extends Controller
         return $this->response(201,"Created",$result);
     }
     
-    function responseError(int $code){
+    function responseError(int $code, string $message){
         return response(json_encode([
             "status" => $code,
             "message" => $message
