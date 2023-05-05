@@ -1,0 +1,303 @@
+{
+	"info": {
+		"_postman_id": "f301f963-d8b9-4e44-99be-e1cd94630ecd",
+		"name": "Penjualan Kendaraan",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17211865"
+	},
+	"item": [
+		{
+			"name": "Master Kendaraan",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE2ODMyNDk2ODksImV4cCI6MTY4MzI1MzI4OSwibmJmIjoxNjgzMjQ5Njg5LCJqdGkiOiJhSmladjR3ckFsZVlOUkpSIiwic3ViIjoiNjQ1M2ExMTY4NWRiY2U2Njc4MDM1YjgzIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.uMs3jLJmFvJj4SSwfpGq-CMhBDRWZ1JZq2T_4dd1WVI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nama\":\"Suzuki APV\",\r\n    \"jenis_kendaraan\":\"mobil\",\r\n    \"warna\": \"hitam\",\r\n    \"tahun\": 2020,\r\n    \"stok\": 100,\r\n    \"harga\": \"20000000\",\r\n    \"mesin\": \"250cc\",\r\n    \"kapasitas_penumpang\": 8,\r\n    \"tipe\": \"MPV\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/kendaraan",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"kendaraan"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Motor",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nama\": \"Honda Vario 150\",\r\n    \"jenis_kendaraan\":\"motor\",\r\n    \"warna\": \"hitam\",\r\n    \"tahun\": 2020,\r\n    \"harga\": \"20000000\",\r\n    \"mesin\": \"150cc\",\r\n    \"tipe_suspensi\": \"Pararel Fork\",\r\n    \"tipe_transmisi\": \"manual\",\r\n    \"stok\":100\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8000/api/kendaraan",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"kendaraan"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Create Mobil",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nama\":\"Suzuki APV\",\r\n    \"jenis_kendaraan\":\"mobil\",\r\n    \"warna\": \"hitam\",\r\n    \"tahun\": 2020,\r\n    \"stok\": 100,\r\n    \"harga\": \"20000000\",\r\n    \"mesin\": \"250cc\",\r\n    \"kapasitas_penumpang\": 8,\r\n    \"tipe\": \"MPV\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8000/api/kendaraan",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"kendaraan"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 03 May 2023 01:16:04 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 03 May 2023 01:16:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.1.18"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=UTF-8"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "List Kendaraan & Stok",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Penjualan",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE2ODMyNTU0MTEsImV4cCI6MTY4MzI1OTAxMSwibmJmIjoxNjgzMjU1NDExLCJqdGkiOiJWZm5FU1Rhc2hwZmNwbTVXIiwic3ViIjoiNjQ1M2ExMTY4NWRiY2U2Njc4MDM1YjgzIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.wGK8ztTrfCe-_2XSs0vpVh3S8HkMCJJarjFjOh8BSTc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"no_nota\": \"PJU002\",\r\n    \"customer\": {\r\n        \"nama\": \"Roni\",\r\n        \"alamat\": \"Jombang\",\r\n        \"telepon\": \"085648636747\"\r\n    },\r\n    \"items\": [{\r\n        \"id\": \"64545bde2deab3499501d505\",\r\n        \"qty\": 1\r\n    }]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/penjualan",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"penjualan"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Penjualan Berdasarkan Produk",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE2ODMyNTU0MTEsImV4cCI6MTY4MzI1OTAxMSwibmJmIjoxNjgzMjU1NDExLCJqdGkiOiJWZm5FU1Rhc2hwZmNwbTVXIiwic3ViIjoiNjQ1M2ExMTY4NWRiY2U2Njc4MDM1YjgzIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.wGK8ztTrfCe-_2XSs0vpVh3S8HkMCJJarjFjOh8BSTc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/api/penjualan/by-produk",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"penjualan",
+								"by-produk"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"rony@gmail.com\",\r\n    \"password\":\"*/1111*\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"rony@gmail.com\",\r\n    \"password\":\"*/1111*\",\r\n    \"name\": \"Fatkhur Roni\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/auth/register",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
