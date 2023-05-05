@@ -17,13 +17,19 @@ class PenjualanController extends Controller
     function create(Request $req){
         $data = json_decode($req->getContent());
         $result = $this->penjualanService->create($data);
-        if($result){
-            return $this->responseUtil->response(201, "Created", $result);
+        if($result["success"]==true){
+            return $this->responseUtil->response($result["code"],$result["message"],$result["data"]);
+        }else{
+            return $this->responseUtil->responseError($result["code"],$result["message"],$result["constraint"]);
         }
     }
 
     function getSalesByProduct(){
         $result = $this->penjualanService->getSalesByProduct();
-        return $this->responseUtil->response(200,"Get data success", $result);
+        if($result["success"]==true){
+            return $this->responseUtil->response($result["code"],$result["message"],$result["data"]);
+        }else{
+            return $this->responseUtil->responseError($result["code"],$result["message"],$result["constraint"]);
+        }
     }
 }

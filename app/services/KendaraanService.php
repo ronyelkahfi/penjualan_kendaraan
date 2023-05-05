@@ -85,7 +85,7 @@ class KendaraanService {
                 "success"=> false,
                 "code"=> 500,
                 "message"=> "Bad request",
-                "constraint" => [`use jenis_kendaraan=motor or mobil`]
+                "constraint" => ["use jenis_kendaraan=motor or mobil"]
             ];
         }
         
@@ -110,7 +110,21 @@ class KendaraanService {
         }
     }
     function getStok(){
-        return $this->kendaraanRepo->get();
+        $result = $this->kendaraanRepo->get();
+        if($result){
+            return [
+                "success"=> true,
+                "code"=> 200,
+                "message"=> "Success",
+                "data"=> $result
+            ];
+        }else{
+            return [
+                "success"=> false,
+                "code"=>"500",
+                "message"=> "Internal server Error"
+            ];
+        }
     }
     
     function reduceStok(string $kendaraanId,int $reducevalue){
