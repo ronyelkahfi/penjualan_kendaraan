@@ -31,7 +31,25 @@ class PenjualanService{
                 "constraint" => $messages
             ];
         }
-
+        // validasi customer
+        $validator = Validator::make((array) $data->customer, [
+            "nama" => "required",
+            "alamat" => "required",
+            'telepon' => "required"
+        ],[
+            "nama.required" => "field customer.nama is required",
+            "alamat.required" => "field customer.alamat is required",
+            'telepon.required' => "field customer.telepon is required"
+        ]);
+        if($validator->fails()){
+            $messages = $validator->errors();
+            return [
+                "success"=> false,
+                "code" => 400,
+                "message" => "Bad request",
+                "constraint" => $messages
+            ];
+        }
         $customer = new CustomerDto(
             $data->customer->nama,
             $data->customer->alamat,
@@ -43,7 +61,24 @@ class PenjualanService{
             $customer
         );
         $arrItemsSell = [];
-        foreach($data->items as $item){
+        foreach($data->items as $index => $item){
+            // validasi items
+            $validator = Validator::make((array) $item, [
+                "id" => "required",
+                "qty" => "required",
+            ],[
+                "id.required" => "field items[".$index."].id is required",
+                "qty.required" => "field items[".$index."].qty is required"
+            ]);
+            if($validator->fails()){
+                $messages = $validator->errors();
+                return [
+                    "success"=> false,
+                    "code" => 400,
+                    "message" => "Bad request",
+                    "constraint" => $messages
+                ];
+            }
             $detailItem = $this->kendaraanService->getDetail($item->id);
             if(!$detailItem){
                 return [
