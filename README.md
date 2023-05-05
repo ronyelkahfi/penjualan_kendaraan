@@ -27,3 +27,12 @@ Penjelasan collection postman
 4.  Endpoint `Master Kendaraan/list kendaraan & Stok` digunakan untuk menampilkan daftar kendaraan yang sudah pernah didaftarkan. Di sini juga ditampilkan stok kendaraan
 5.  Endpoint `Penjualan/create` untuk melakukan transaksi penjualan. Sebelum melakukan transaksi, dibutuhkan id kendaraan yang diambil ketika akses `Master Kendaraan/list kendaraan & Stok`
 6.  Endpoint `Penjualan/Penjualan Berdasarkan Produk` adalah endpoint report penjualan kendaraan berdasarkan produk
+
+## Struktur aplikasi
+
+1. Default route berada di file `routes/api.php`
+2. Controller berada di folder `app/http/controllers`
+3. Services berada di folder `app/services`
+4. Repository berada di folder `app/repositories`
+5. Representasi class diagram berada di folder `app/services/dto`
+6. Pola akses database antar collection berada di komunikasi antar service. Suatu service tidak bisa mengakses langsung repository service lain.
