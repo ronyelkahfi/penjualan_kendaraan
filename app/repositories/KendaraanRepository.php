@@ -32,7 +32,6 @@ class KendaraanRepository{
         return $kendaraan->save();
     }
     function getByIds(Array $ids){
-        $result = $this->kendaraan->whereIn('_id', $ids)->get();
-        var_dump($result[0]);
+        return $result = $this->kendaraan->whereIn('_id', $ids)->get();
     }
 }

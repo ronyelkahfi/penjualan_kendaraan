@@ -91,14 +91,19 @@ class PenjualanService{
             $productSales[$product->_id] = ["total_penjualan" => $product->totalQty];
         }
 
-        $dataProducts = $this->kendaraanService->getDetailByIds($productIds);
+        $dataProducts = json_decode($this->kendaraanService->getDetailByIds($productIds));
         $output = [];
         foreach($dataProducts as $dataProduct){
+            
             $dataRow = (array) $dataProduct;
             
             $productSales[$dataProduct->_id] = array_merge($dataRow, $productSales[$dataProduct->_id]);
         }
-        // var_dump($productSales);
-        // return $productSales;
+        return [
+            "success"=>true,
+            "code"=>200,
+            "message"=>"Created",
+            "data"=> $productSales
+        ];
     }
 }
